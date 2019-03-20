@@ -3,9 +3,7 @@ const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
-//const dotenv = require('dotenv');
-//const gql = require('graphql-tag');
-const imdb = require('./imdb');
+onst imdb = require('./imdb');
 const DENZEL_IMDB_ID = 'nm0000243';
 
 
@@ -14,15 +12,13 @@ const DATABASE_NAME = "Dataset";
 
 let collection, database;
 
-//const {queryType} = require('./query.js');
+
 const port = 9292;
 
-/*const movie = dotenv.config();
-if (movie.error) {
-    throw movie.error;
-}*/
+//declaration of the schema
 
 const schema = buildSchema(`
+
   type Query {
     populate: Populate
     random: Movie
@@ -50,6 +46,7 @@ const schema = buildSchema(`
   }
 `);
 
+//async functions for get and post requests
 const root = {
     populate: async (source, args) => {
         const movies = await populate(DENZEL_IMDB_ID);
@@ -106,6 +103,7 @@ app.use('/graphql', graphqlHTTP({
     }
 );*/
 
+//listen on port 9292 and connection to mongoDB atlas
 app.listen(port, () => {
 
     MongoClient.connect(
