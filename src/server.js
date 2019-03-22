@@ -3,7 +3,7 @@ const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
-onst imdb = require('./imdb');
+const imdb = require('./imdb');
 const DENZEL_IMDB_ID = 'nm0000243';
 
 
